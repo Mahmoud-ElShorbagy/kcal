@@ -1,9 +1,13 @@
 //this file contains all the functions that are used to navigate between screens
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:kcal/core/helpers/app_colors.dart';
 import 'package:kcal/core/route_utils/route_names.dart';
 import 'package:kcal/models/categorey_dto.dart';
 import 'package:kcal/models/foods_variables.dart';
 import 'package:kcal/models/recipe_variables.dart';
+import 'package:kcal/widgets/app/app_snack_bar.dart';
 
 class RouteUtils {
   static void navigateToCategoryRecipe(
@@ -68,5 +72,23 @@ class RouteUtils {
     } else if (fvoriteFoods.imageUrl == categoryFoods[16].imageUrl) {
       Navigator.pushNamed(context, RouteNames.detailsFruits);
     }
+  }
+
+  static String getIntialRoute() {
+    return (FirebaseAuth.instance.currentUser != null &&
+            FirebaseAuth.instance.currentUser!.emailVerified)
+        ? RouteNames.appBottomNavigationBar
+        : RouteNames.walkthrough;
+  }
+
+  static Future<void> signOut(BuildContext context) async {
+    GoogleSignIn().disconnect();
+    await FirebaseAuth.instance.signOut();
+    Navigator.pushNamedAndRemoveUntil(
+        // ignore: use_build_context_synchronously
+        context,
+        RouteNames.login,
+        (route) => false);
+    appSnackBar(context, "Signed Out", AppColors.red);
   }
 }

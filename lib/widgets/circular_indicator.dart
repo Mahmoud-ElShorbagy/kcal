@@ -5,19 +5,24 @@ import 'package:kcal/core/helpers/app_colors.dart';
 class CircularIndicator extends StatelessWidget {
   const CircularIndicator({
     super.key,
+    this.height = 50,
+    this.mainAxisSize = MainAxisSize.max,
   });
+  final double height;
+  final MainAxisSize mainAxisSize;
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: mainAxisSize,
       children: [
         SizedBox(
-          height: 50.h,
+          height: height.h,
         ),
         const CircularProgressIndicator(
           color: AppColors.primary,
         ),
         SizedBox(
-          height: 50.h,
+          height: height.h,
         )
       ],
     );

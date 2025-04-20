@@ -25,7 +25,7 @@ class CustomBuildRowSetting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 32.w),
+      padding: EdgeInsets.symmetric(horizontal: 27.w),
       child: Column(
         children: [
           InkWell(
@@ -33,22 +33,22 @@ class CustomBuildRowSetting extends StatelessWidget {
             child: Row(children: [
               Container(
                 alignment: Alignment.center,
-                width: 48.w,
-                height: 48.h,
+                width: 43.w,
+                height: 38.h,
                 decoration: BoxDecoration(
                   color: AppColors.accentYellowLight100,
                   borderRadius: BorderRadius.circular(8).r,
                 ),
                 child: CustomImageWidget(
                     image: Utils.getAssetPNGPath(imageIcon),
-                    width: 28.w,
-                    height: 28.h),
+                    width: 24.w,
+                    height: 24.h),
               ),
               SizedBox(
                 width: 16.w,
               ),
               CustomText(
-                fontSize: 18.sp,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.w400,
                 fontFamily: "WorkSans",
                 text: text,

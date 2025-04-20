@@ -4,8 +4,10 @@ class AppColors {
   static const Color black = Color(0XFF000000);
   static const Color white = Color(0xFFFFFFFF);
   static const Color blue = Color(0XFF1877F2);
+  static const Color yellow = Color.fromARGB(255, 202, 167, 62);
   static const Color textPrimary = Color(0X73000000);
   static const Color primary = Color(0XFFFF9385);
+  static const Color red = Color.fromARGB(255, 255, 102, 102);
   static const Color textPrimary100 = Color(0XFFFF806E);
   static const Color textPrimary400 = Color(0XFFFF8473);
   static const Color textPrimary500 = Color(0XFFFFC0B8);

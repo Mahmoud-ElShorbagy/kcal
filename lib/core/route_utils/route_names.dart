@@ -7,7 +7,7 @@ class RouteNames {
   static const String pickPhoto = "/pickPhoto";
   static const String getStarted = "/getStarted";
   static const String confirmTerms = "/confirmTerms";
-  static const String serviceTerms = "/serciceTerms";
+  static const String serviceTerms = "/serviceTerms";
   static const String completion = "/completion";
   static const String appBottomNavigationBar = "/appBottomNavigationBar";
   static const String recipesPage = "/recipesPage";
@@ -42,4 +42,11 @@ class RouteNames {
   static const String detailsShrimp = "/detailsShrimp";
   static const String favorite = "/favorite";
   static const String settings = "/settings";
+  static const String editProfile = "/editProfile";
+  static const String subscriptions = "/subscriptions";
+  static const String helpCenter = "/helpCenter";
+  static const String faqs = "/faqs";
+  static const String chatWithUs = "/chatWithUs";
+  static const String message = "/message";
+  static const String premium = "/premium";
 }

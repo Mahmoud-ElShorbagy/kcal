@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kcal/view/app_tap_bar/all_foods/view.dart';
 import 'package:kcal/view/app_tap_bar/favorites_recipes/view.dart';
 import 'package:kcal/view/app_tap_bar/trending_foods/view.dart';
-import 'package:kcal/view/product_recipes/cubit/cubit.dart';
 import 'package:kcal/widgets/custom_button.dart';
 
 import '../app_tap_bar/cubit.dart';
@@ -22,7 +21,7 @@ class StateHandler {
                   )
                 : state.activeText == 2
                     ? const TrendingFoodsView()
-                    : const SizedBox()
+                    : const SizedBox.shrink()
         : state.activeText == 0
             ? const AllFoodsView()
             : state.activeText == 1
@@ -31,7 +30,7 @@ class StateHandler {
                   )
                 : state.activeText == 2
                     ? const TrendingFoodsView()
-                    : const SizedBox();
+                    : const SizedBox.shrink();
   }
 
   static Widget buildSearchButtonWhenEmpty(final TextChangeState state,

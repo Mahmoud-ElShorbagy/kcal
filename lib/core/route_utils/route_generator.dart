@@ -1,26 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:kcal/auth/pick_photo/view.dart';
+import 'package:kcal/view/chat_with_us/view.dart';
 import 'package:kcal/view/confirm_terms/view.dart';
 import 'package:kcal/view/completion_page/view.dart';
-import 'package:kcal/view/foods_page/details_burger.dart';
-import 'package:kcal/view/foods_page/details_cake.dart';
-import 'package:kcal/view/foods_page/details_chicken.dart';
-import 'package:kcal/view/foods_page/details_cookie.dart';
-import 'package:kcal/view/foods_page/details_croissant.dart';
-import 'package:kcal/view/foods_page/details_donuts.dart';
-import 'package:kcal/view/foods_page/details_fish.dart';
-import 'package:kcal/view/foods_page/details_fries.dart';
-import 'package:kcal/view/foods_page/details_fruits.dart';
-import 'package:kcal/view/foods_page/details_hotdog.dart';
-import 'package:kcal/view/foods_page/details_pasta.dart';
-import 'package:kcal/view/foods_page/details_pizza.dart';
-import 'package:kcal/view/foods_page/details_rice.dart';
-import 'package:kcal/view/foods_page/details_sandwacho.dart';
-import 'package:kcal/view/foods_page/details_sandwichtw.dart';
-import 'package:kcal/view/foods_page/details_sausage.dart';
-import 'package:kcal/view/foods_page/details_shrimp.dart';
+import 'package:kcal/view/faqs/view.dart';
+import 'package:kcal/view/foods_page/details/details_burger.dart';
+import 'package:kcal/view/foods_page/details/details_cake.dart';
+import 'package:kcal/view/foods_page/details/details_chicken.dart';
+import 'package:kcal/view/foods_page/details/details_cookie.dart';
+import 'package:kcal/view/foods_page/details/details_croissant.dart';
+import 'package:kcal/view/foods_page/details/details_donuts.dart';
+import 'package:kcal/view/foods_page/details/details_fish.dart';
+import 'package:kcal/view/foods_page/details/details_fries.dart';
+import 'package:kcal/view/foods_page/details/details_fruits.dart';
+import 'package:kcal/view/foods_page/details/details_hotdog.dart';
+import 'package:kcal/view/foods_page/details/details_pasta.dart';
+import 'package:kcal/view/foods_page/details/details_pizza.dart';
+import 'package:kcal/view/foods_page/details/details_rice.dart';
+import 'package:kcal/view/foods_page/details/details_sandwacho.dart';
+import 'package:kcal/view/foods_page/details/details_sandwichtw.dart';
+import 'package:kcal/view/foods_page/details/details_sausage.dart';
+import 'package:kcal/view/foods_page/details/details_shrimp.dart';
 import 'package:kcal/view/foods_page/view.dart';
+import 'package:kcal/view/help_center/view.dart';
 import 'package:kcal/view/home/setting/view.dart';
+import 'package:kcal/view/message/view.dart';
+import 'package:kcal/view/premium/view.dart';
 import 'package:kcal/view/product_recipes/recipes_chicken_leg.dart';
 import 'package:kcal/view/product_recipes/recipes_choco_lamb.dart';
 import 'package:kcal/view/product_recipes/recipes_egg_omelet.dart';
@@ -29,7 +34,9 @@ import 'package:kcal/view/product_recipes/recipes_fruit_veggie.dart';
 import 'package:kcal/view/product_recipes/recipes_fruity_nuggets.dart';
 import 'package:kcal/view/product_recipes/recipes_mutton_kebab.dart';
 import 'package:kcal/view/product_recipes/recipes_spicy_veg.dart';
+import 'package:kcal/view/profile/units/edit_veiw.dart';
 import 'package:kcal/view/service_terms/view.dart';
+import 'package:kcal/view/subscriptions/view.dart';
 
 import '../../auth/email_sent/view.dart';
 import '../../auth/forget_password/view.dart';
@@ -87,6 +94,13 @@ class AppRoutes {
     RouteNames.detailsSausage: (context) => const DetailsSausageView(),
     RouteNames.detailsShrimp: (context) => const DetailsShrimpView(),
     RouteNames.settings: (context) => const SettingView(),
+    RouteNames.editProfile: (content) => const EditProfileView(),
+    RouteNames.subscriptions: (context) => const SubscriptionsView(),
+    RouteNames.helpCenter: (context) => const HelpCenterView(),
+    RouteNames.faqs: (context) => const FAQSView(),
+    RouteNames.chatWithUs: (context) => const ChatWithUsView(),
+    RouteNames.message: (context) => const MessageView(),
+    RouteNames.premium: (context) => const PremiumView(),
   };
   static Route<dynamic> generateRoute(RouteSettings settings) {
     return RouteGenerator.generateRoute(settings);
@@ -245,6 +259,29 @@ class RouteGenerator {
       case RouteNames.settings:
         return MaterialPageRoute(
             settings: settings, builder: (_) => const SettingView());
+      case RouteNames.editProfile:
+        return MaterialPageRoute(
+            settings: settings, builder: (_) => const EditProfileView());
+      case RouteNames.subscriptions:
+        return MaterialPageRoute(
+            settings: settings, builder: (_) => const SubscriptionsView());
+      case RouteNames.helpCenter:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const HelpCenterView(),
+        );
+      case RouteNames.faqs:
+        return MaterialPageRoute(
+            settings: settings, builder: (_) => const FAQSView());
+      case RouteNames.chatWithUs:
+        return MaterialPageRoute(
+            settings: settings, builder: (_) => const ChatWithUsView());
+      case RouteNames.message:
+        return MaterialPageRoute(
+            settings: settings, builder: (_) => const MessageView());
+      case RouteNames.premium:
+        return MaterialPageRoute(
+            settings: settings, builder: (_) => const PremiumView());
       default:
         return MaterialPageRoute(
             settings: settings, builder: (_) => const WalkthroughView());

@@ -11,7 +11,7 @@ class CustomTextForm extends StatelessWidget {
     this.validator,
     this.onEditingComplete,
     this.onSaved,
-    required this.image,
+    this.image,
     this.obscureText = false,
     this.suffix,
     required this.hintText,
@@ -20,12 +20,14 @@ class CustomTextForm extends StatelessWidget {
     this.onTap,
     this.onChanged,
     this.fontWeight,
+    this.height = 70,
+    this.maxLines = 1,
   });
   final TextEditingController? controller;
   final String? Function(String? v)? validator;
   final void Function()? onEditingComplete;
   final void Function(String?)? onSaved;
-  final String image;
+  final String? image;
   final bool obscureText;
   final Widget? suffix;
   final String hintText;
@@ -33,14 +35,17 @@ class CustomTextForm extends StatelessWidget {
   final Color? fillColor;
   final void Function()? onTap;
   final void Function(String v)? onChanged;
+  final double? height;
   final FontWeight? fontWeight;
+  final int? maxLines;
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: bottom.h),
       width: 311.w,
-      height: 43.h,
+      height: height,
       child: TextFormField(
+        maxLines: maxLines,
         obscureText: obscureText,
         style: appTextStyle(fontWeight),
         onEditingComplete: onEditingComplete,
@@ -56,14 +61,17 @@ class CustomTextForm extends StatelessWidget {
           suffixIcon: suffix,
           fillColor: fillColor,
           filled: true,
-          prefixIcon: Container(
-            margin: EdgeInsets.only(left: 16.w, right: 8.w),
-            child: CustomImageWidget(image: image, width: 24, height: 24),
-          ),
-          enabledBorder: buildInputBorder(3.w, AppColors.primaryLightGreen100),
+          prefixIcon: image != null
+              ? Container(
+                  margin: EdgeInsets.only(left: 16.w, right: 8.w),
+                  child:
+                      CustomImageWidget(image: image!, width: 24, height: 24),
+                )
+              : null,
+          enabledBorder: buildInputBorder(2.w, AppColors.primaryLightGreen100),
           focusedBorder: buildInputBorder(1.w, AppColors.primaryBaseGreen),
-          focusedErrorBorder: buildInputBorder(1.w, AppColors.secondaryDarkRed),
-          errorBorder: buildInputBorder(1.w, AppColors.secondaryDarkRed),
+          focusedErrorBorder: buildInputBorder(2.w, AppColors.textPrimary400),
+          errorBorder: buildInputBorder(1.w, AppColors.primary),
         ),
       ),
     );
@@ -80,6 +88,6 @@ class CustomTextForm extends StatelessWidget {
 
 OutlineInputBorder buildInputBorder(double width, Color color) {
   return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(16).r,
       borderSide: BorderSide(width: width, color: color));
 }

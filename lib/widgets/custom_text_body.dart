@@ -15,6 +15,7 @@ class CustomTextBody extends StatelessWidget {
     this.fontSizedBig = 0,
     this.changeAxisSize = false,
     this.changeFontSize = false,
+    this.height = 1.7,
   });
   final double fontSizeSmall, fontSizedBig;
   final String text;
@@ -23,6 +24,7 @@ class CustomTextBody extends StatelessWidget {
   final Color color;
   final bool changeAxisSize;
   final bool changeFontSize;
+  final double? height;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -37,7 +39,7 @@ class CustomTextBody extends StatelessWidget {
             color: AppColors.black),
         SizedBox(height: 6.h),
         CustomText(
-          height: 1.7.h,
+          height: height,
           text: title,
           fontSize: changeFontSize ? fontSizeSmall : 16.sp,
           fontWeight: FontWeight.w400,
