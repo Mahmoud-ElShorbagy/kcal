@@ -21,7 +21,7 @@ class ImageUserView extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           CircleAvatar(
-            radius: 90.r,
+            radius: 80.r,
             backgroundImage: FileImage((imagePath!)),
           ),
         ],

@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kcal/core/helpers/app_colors.dart';
 import 'package:kcal/core/route_utils/route_names.dart';
+import 'package:kcal/cubit/theme_cubit.dart';
 import 'package:kcal/view/app_tap_bar/cubit.dart';
+import 'package:kcal/widgets/alerting_loading.dart';
 import 'package:kcal/widgets/build_row_setting.dart';
 import 'package:kcal/widgets/custom_app_bar.dart';
 
@@ -42,19 +44,20 @@ class _SettingViewState extends State<SettingView> {
             CustomBuildRowSetting(
               onTap: () {
                 setState(() {
+                  context.read<ThemeCubit>().toggleTheme();
                   isPressedList[0] = !isPressedList[0];
                 });
               },
               imageIcon: "theme",
               text: "Dark Mode",
               image: isPressedList[0] ? "switch_enabled" : "switch_disable",
-              width: 56.w,
-              height: 32.h,
+              width: 48.w,
+              height: 25.h,
             ),
             SizedBox(height: 16.h),
             CustomBuildRowSetting(
-              width: 56.w,
-              height: 32.h,
+              width: 48.w,
+              height: 25.h,
               onTap: () {
                 setState(() {
                   isPressedList[1] = !isPressedList[1];
@@ -66,8 +69,8 @@ class _SettingViewState extends State<SettingView> {
             ),
             SizedBox(height: 16.h),
             CustomBuildRowSetting(
-              width: 56.w,
-              height: 32.h,
+              width: 48.w,
+              height: 25.h,
               onTap: () {
                 setState(() {
                   isPressedList[2] = !isPressedList[2];
@@ -86,7 +89,9 @@ class _SettingViewState extends State<SettingView> {
             ),
             SizedBox(height: 16.h),
             CustomBuildRowSetting(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, RouteNames.helpCenter);
+              },
               imageIcon: "help_center",
               text: "Help Center",
               image: "foraward_grey",
@@ -94,7 +99,7 @@ class _SettingViewState extends State<SettingView> {
             SizedBox(height: 16.h),
             CustomBuildRowSetting(
               onTap: () {
-                Navigator.pushNamed(context, RouteNames.login);
+                AlertingLoading.showAlert(context, "Do you want to log out ?");
               },
               imageIcon: "log_out",
               text: "Log Out",

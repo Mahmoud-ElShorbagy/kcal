@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:kcal/models/categorey_dto.dart';
 import 'package:kcal/view/app_tap_bar/favorites_recipes/view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -60,7 +59,8 @@ class ProductRecipesCubit extends Cubit<ProductRecipesState> {
     await _saveRecipes();
   }
 
-  void refrechState() {
+  void refrechData() async {
+    await _loadSavedRecipes();
     emit(RecfrechPage());
   }
 }
