@@ -25,6 +25,11 @@ final List<String> image = [
   Utils.getAssetjpgPath("lettuce"),
   Utils.getAssetjpgPath("tomato"),
 ];
+List<String> subscriptionTitle = [
+  "Scan Food in Real Time",
+  "Unlimited Favorites",
+  " Unlimited Search Feature"
+];
 final List<CategoryDTO> categoreyDetails = [
   ...List.generate(titleDetails.length, (index) {
     return CategoryDTO(
