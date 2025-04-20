@@ -5,9 +5,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:kcal/auth/pick_photo/cubit.dart';
 import 'package:kcal/core/helpers/utils.dart';
 import 'package:kcal/view/image_user/view.dart';
+import 'package:kcal/view/navigate_to_page/view.dart';
 import 'package:kcal/widgets/change_upload_image.dart';
 
-import '../../core/helpers/app_colors.dart';
 import '../../core/route_utils/route_names.dart';
 import '../../widgets/custom_auth_header.dart';
 import '../../widgets/custom_button.dart';
@@ -25,7 +25,7 @@ class GetStartedView extends StatelessWidget {
           if (state is ImagePickerSuccess) {
             Navigator.pop(context);
           }
-          final cubit = ImagePickerCubit.get(context);
+          final cubit = context.read<ImagePickerCubit>();
           return Scaffold(
             body: ListView(
               padding: EdgeInsets.symmetric(horizontal: 25.w),
@@ -67,23 +67,9 @@ class GetStartedView extends StatelessWidget {
                         onTap: () {
                           Navigator.pushNamed(context, RouteNames.confirmTerms);
                         })),
-                Container(
-                  alignment: Alignment.center,
-                  margin: EdgeInsets.only(top: 16.h),
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, RouteNames.login);
-                    },
-                    child: CustomText(
-                      text: "Already Have An Acount? ",
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: "WorkSans",
-                      color: AppColors.secondary,
-                      textSpan: "Log In",
-                    ),
-                  ),
-                ),
+                NavigateToPage.navigateToPage(context, () {
+                  Navigator.pushNamed(context, RouteNames.login);
+                }, "Already Have An Acount? ", "Log In"),
               ],
             ),
           );

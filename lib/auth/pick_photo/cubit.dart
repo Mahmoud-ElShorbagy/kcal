@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kcal/core/helpers/utils.dart';
@@ -9,16 +8,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 part 'state.dart';
 
 class ImagePickerCubit extends Cubit<ImagePickerState> {
-  final ImagePicker imagePicker = ImagePicker();
   ImagePickerCubit() : super(ImagePickerInitial()) {
     loadImage();
   }
-  static ImagePickerCubit get(context) => BlocProvider.of(context);
   Future<void> loadImage() async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? imagePath = prefs.getString("image_path");
-      if (imagePath != null) {
+      if (imagePath != null && File(imagePath).existsSync()) {
         Utils.imagePath = File(imagePath);
         emit(const ImagePickerSave());
       }
@@ -39,8 +36,8 @@ class ImagePickerCubit extends Cubit<ImagePickerState> {
           await picker.pickImage(imageQuality: 85, source: source);
       if (pickedImage != null) {
         Utils.imagePath = File(pickedImage.path);
-        saveImage();
-        emit(const ImagePickerSuccess());
+        await saveImage();
+        emit(ImagePickerSuccess(imageFile: Utils.imagePath!));
       }
     } catch (e) {
       emit(ImagePickerError(errorMessage: e.toString()));

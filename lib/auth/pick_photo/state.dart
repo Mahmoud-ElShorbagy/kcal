@@ -1,10 +1,7 @@
 part of 'cubit.dart';
 
-sealed class ImagePickerState extends Equatable {
+sealed class ImagePickerState {
   const ImagePickerState();
-
-  @override
-  List<Object> get props => [];
 }
 
 final class ImagePickerInitial extends ImagePickerState {}
@@ -12,7 +9,8 @@ final class ImagePickerInitial extends ImagePickerState {}
 class ImagePickerLoading extends ImagePickerState {}
 
 final class ImagePickerSuccess extends ImagePickerState {
-  const ImagePickerSuccess();
+  final File imageFile;
+  const ImagePickerSuccess({required this.imageFile});
 }
 
 final class ImagePickerSave extends ImagePickerState {
