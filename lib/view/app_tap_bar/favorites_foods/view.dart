@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kcal/core/route_utils/route_utils.dart';
 import 'package:kcal/models/categorey_dto.dart';
-import 'package:kcal/view/foods_page/cubit/cubit.dart';
+import 'package:kcal/view/foods_page/cubit.dart';
 import 'package:kcal/view/no_result/view.dart';
 import 'package:kcal/widgets/app/custom_product_list.dart';
 import 'package:kcal/widgets/build_final_resuilt.dart';

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kcal/view/navigate_to_page/view.dart';
 
-import '../../core/helpers/app_colors.dart';
 import '../../core/helpers/utils.dart';
 import '../../core/route_utils/route_names.dart';
 import '../../widgets/custom_auth_header.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/custom_image.dart';
-import '../../widgets/custom_text.dart';
 
 class ConfirmTermsPageView extends StatelessWidget {
   const ConfirmTermsPageView({super.key});
@@ -38,22 +37,9 @@ of service and privacy policy.""",
                   onTap: () {
                     Navigator.pushNamed(context, RouteNames.completion);
                   })),
-          Container(
-            alignment: Alignment.center,
-            margin: EdgeInsets.only(top: 16.h),
-            child: InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, RouteNames.serviceTerms);
-              },
-              child: CustomText(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w600,
-                fontFamily: "WorkSans",
-                color: AppColors.secondary,
-                textSpan: "Terms Of Service",
-              ),
-            ),
-          ),
+          NavigateToPage.navigateToPage(context, () {
+            Navigator.pushNamed(context, RouteNames.serviceTerms);
+          }, "", "Terms Of Service")
         ],
       ),
     );

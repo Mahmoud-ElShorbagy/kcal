@@ -37,8 +37,7 @@ healthier and productive life.""",
               child: CustomButton(
                   text: "Let’s Go",
                   onTap: () {
-                    Navigator.pushNamed(
-                        context, RouteNames.appBottomNavigationBar);
+                    Navigator.pushNamed(context, RouteNames.login);
                   })),
           Container(
             alignment: Alignment.center,

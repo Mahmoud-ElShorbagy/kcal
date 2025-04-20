@@ -8,7 +8,8 @@ import 'package:kcal/widgets/custom_text.dart';
 import '../../core/helpers/app_colors.dart';
 
 class FavoriteView extends StatelessWidget {
-  const FavoriteView({super.key});
+  final void Function(int)? onTabRequested;
+  const FavoriteView({super.key, required this.onTabRequested});
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +102,9 @@ class FavoriteView extends StatelessWidget {
                 bottom: 20.h,
                 child: StateHandler.buildSearchButtonWhenEmpty(
                   state,
-                  onTap: () {},
+                  onTap: () {
+                    onTabRequested?.call(1);
+                  },
                 ),
               ),
             ],
