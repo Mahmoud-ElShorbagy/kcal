@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kcal/core/route_utils/route_generator.dart';
-import 'package:kcal/core/route_utils/route_names.dart';
 import 'package:kcal/core/route_utils/route_utils.dart';
 import 'package:kcal/cubit/theme_cubit.dart';
 

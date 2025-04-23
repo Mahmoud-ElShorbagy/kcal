@@ -15,6 +15,8 @@ class EmailSentView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String? email = ModalRoute.of(context)?.settings.arguments as String?;
+
     return Scaffold(
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: 25.w),
@@ -29,7 +31,7 @@ class EmailSentView extends StatelessWidget {
               changeFontSize: true,
               text: 'Email Sent!',
               title: "We’ve sent a password reset link to",
-              subTitle: "sn***ri@gmail.com"),
+              subTitle: email!),
           const SizedBox(height: 44),
           Align(
             alignment: Alignment.center,

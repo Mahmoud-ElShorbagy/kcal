@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kcal/auth/forget_password/cubit.dart';
 import 'package:kcal/auth/login/cubit.dart';
 import 'package:kcal/auth/register/cubit.dart';
@@ -64,8 +65,14 @@ class ManageStateHandler {
         context,
       );
     } else if (state is ForgetpasswordSuccess) {
-      appSnackBar(context, state.message, AppColors.primaryBaseGreen);
-      Navigator.pushNamed(context, RouteNames.emailSent);
+      final cubit = context.read<ForgetpasswordCubit>();
+      appSnackBar(
+        context,
+        state.message,
+        AppColors.primaryBaseGreen,
+      );
+      Navigator.pushNamed(context, RouteNames.emailSent,
+          arguments: cubit.emailController.text);
     } else if (state is ForgetpasswordError) {
       appSnackBar(context, state.message, AppColors.red);
     }
