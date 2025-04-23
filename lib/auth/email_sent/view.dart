@@ -16,7 +16,6 @@ class EmailSentView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String? email = ModalRoute.of(context)?.settings.arguments as String?;
-
     return Scaffold(
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: 25.w),
