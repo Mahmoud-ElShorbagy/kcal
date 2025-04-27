@@ -19,7 +19,6 @@ class ManageStateHandler {
       appSnackBar(context, state.message, AppColors.red);
     } else if (state is RegisterLoading) {
       AlertingLoading.showLoading(
-        seconds: 2,
         context,
       );
     }

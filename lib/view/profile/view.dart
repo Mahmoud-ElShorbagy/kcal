@@ -64,7 +64,7 @@ class ProfileView extends StatelessWidget {
                     fontSize: 22.sp,
                     fontWeight: FontWeight.w500,
                     fontFamily: "WorkSans",
-                    text: cubit.nameController.text);
+                    text: cubit.userName);
               },
             ),
           ),

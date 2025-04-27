@@ -85,7 +85,6 @@ class EditProfileView extends StatelessWidget {
                                     onChanged: (v) {
                                       registerCubit.updateValidateName(v);
                                     },
-                                    controller: registerCubit.nameController,
                                     validator: (v) =>
                                         Validators.validateName(v!),
                                     fontWeight: FontWeight.w400,
@@ -106,8 +105,9 @@ class EditProfileView extends StatelessWidget {
                                 if (registerCubit.formKey.currentState!
                                     .validate()) {
                                   absorbing = true;
-                                  registerCubit.saveName();
-
+                                  registerCubit.auth.currentUser!
+                                      .updateDisplayName(
+                                          registerCubit.nameController.text);
                                   AlertingLoading.showLoading(context);
                                   await Future.delayed(
                                       const Duration(seconds: 3));

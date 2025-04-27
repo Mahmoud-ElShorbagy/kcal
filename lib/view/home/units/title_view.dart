@@ -22,15 +22,11 @@ class TitleView extends StatelessWidget {
             child: BlocBuilder<RegisterCubit, RegisterState>(
               builder: (context, state) {
                 final cubit = RegisterCubit.get(context);
-                return Column(
-                  children: [
-                    CustomText(
-                      fontSize: 21.sp,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: "WorkSans",
-                      textSpan: "Hello ${cubit.nameController.text},",
-                    )
-                  ],
+                return CustomText(
+                  fontSize: 21.sp,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: "WorkSans",
+                  textSpan: "Hello ${cubit.userName},",
                 );
               },
             ),

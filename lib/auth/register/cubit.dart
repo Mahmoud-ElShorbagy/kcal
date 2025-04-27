@@ -1,20 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 part 'state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
-  RegisterCubit() : super(RegisterInitial()) {
-    loadName();
-  }
+  RegisterCubit() : super(RegisterInitial());
   static RegisterCubit get(context) => BlocProvider.of(context);
   final auth = FirebaseAuth.instance;
+  final userName = FirebaseAuth.instance.currentUser?.displayName;
   final formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
   bool get isFormValid {
     return nameController.text.length >= 2 &&
         nameController.text.length <= 20 &&
@@ -24,20 +22,13 @@ class RegisterCubit extends Cubit<RegisterState> {
         passwordController.text.length >= 6;
   }
 
-  Future<void> saveName() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString("saved_name", nameController.text);
-
-    emit(StateUpdate());
-  }
-
   Future<void> loadName() async {
-    final prefs = await SharedPreferences.getInstance();
-    final savedName = prefs.getString("saved_name") ?? "";
-    if (savedName.isNotEmpty) {
-      nameController.text = savedName;
+    final user = auth.currentUser;
+    if (user != null && user.displayName != null) {
+      nameController.text = user.displayName!;
+      emit(StateUpdate());
+      return;
     }
-    emit(StateUpdate());
   }
 
   void updateValidateName(String name) {
@@ -65,8 +56,10 @@ class RegisterCubit extends Cubit<RegisterState> {
           email: emailController.text,
           password: passwordController.text,
         );
+        await auth.currentUser!.updateDisplayName(nameController.text);
+        await auth.currentUser!.reload();
+
         await FirebaseAuth.instance.currentUser!.sendEmailVerification();
-        await saveName();
         emit(const RegisterSuccess(
             message: "The account has been created successfully."));
       } on FirebaseAuthException catch (e) {
