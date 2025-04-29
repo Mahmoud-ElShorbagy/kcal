@@ -6,6 +6,7 @@ part 'state.dart';
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitial());
   static RegisterCubit get(context) => BlocProvider.of(context);
+  final name = '';
   final auth = FirebaseAuth.instance;
   final userName = FirebaseAuth.instance.currentUser?.displayName;
   final formKey = GlobalKey<FormState>();
