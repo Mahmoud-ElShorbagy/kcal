@@ -3,8 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kcal/core/route_utils/route_generator.dart';
-import 'package:kcal/core/route_utils/route_utils.dart';
+import 'package:kcal/core/route_utils/route_names.dart';
 import 'package:kcal/cubit/theme_cubit.dart';
+import 'package:kcal/widgets/status_bar_color.dart';
 
 import 'core/helpers/app_colors.dart';
 
@@ -13,10 +14,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: AppColors.primary,
-      statusBarBrightness: Brightness.light,
-    ));
+    statusBarColor();
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,
@@ -28,12 +26,11 @@ class MyApp extends StatelessWidget {
             final cubit = ThemeCubit.get(context);
             return MaterialApp(
               debugShowCheckedModeBanner: false,
-              routes: AppRoutes.appRoutes,
               theme: cubit.changeTheme
                   ? state.themeData
                   : ThemeData(scaffoldBackgroundColor: AppColors.white),
               onGenerateRoute: RouteGenerator.generateRoute,
-              initialRoute: RouteUtils.getIntialRoute(),
+              initialRoute: RouteNames.splash,
             );
           },
         ),

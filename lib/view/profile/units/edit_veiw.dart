@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,8 +20,25 @@ import 'package:kcal/widgets/custom_button.dart';
 import 'package:kcal/widgets/custom_text_form.dart';
 import 'package:kcal/widgets/title_text_field.dart';
 
-class EditProfileView extends StatelessWidget {
+class EditProfileView extends StatefulWidget {
   const EditProfileView({super.key});
+
+  @override
+  State<EditProfileView> createState() => _EditProfileViewState();
+}
+
+class _EditProfileViewState extends State<EditProfileView> {
+  Future<bool> _checkInternetConnection() async {
+    try {
+      final result = await InternetAddress.lookup('google.com');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        return true;
+      }
+      return false;
+    } on SocketException catch (_) {
+      return false;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -105,16 +124,37 @@ class EditProfileView extends StatelessWidget {
                                 if (registerCubit.formKey.currentState!
                                     .validate()) {
                                   absorbing = true;
-                                  registerCubit.auth.currentUser!
-                                      .updateDisplayName(
-                                          registerCubit.nameController.text);
-                                  AlertingLoading.showLoading(context);
-                                  await Future.delayed(
-                                      const Duration(seconds: 3));
-                                  appSnackBar(context, "Edit Profile Success",
-                                      AppColors.primaryBaseGreen);
-                                  Navigator.pushNamed(context,
-                                      RouteNames.appBottomNavigationBar);
+                                  bool hasConnection =
+                                      await _checkInternetConnection();
+                                  if (!hasConnection) {
+                                    appSnackBar(
+                                      context,
+                                      "No internet connection",
+                                      AppColors.red,
+                                    );
+                                    absorbing = false;
+                                    return;
+                                  }
+                                  try {
+                                    registerCubit.auth.currentUser!
+                                        .updateDisplayName(
+                                            registerCubit.nameController.text);
+
+                                    AlertingLoading.showLoading(context);
+                                    await Future.delayed(
+                                        const Duration(seconds: 3));
+                                    appSnackBar(context, "Edit successfully",
+                                        AppColors.primaryBaseGreen);
+                                    Navigator.pushNamed(context,
+                                        RouteNames.appBottomNavigationBar);
+                                  } catch (e) {
+                                    absorbing = false;
+
+                                    appSnackBar(
+                                        context,
+                                        "Error occurred: ${e.toString()}",
+                                        AppColors.red);
+                                  }
                                 }
                               },
                             ),

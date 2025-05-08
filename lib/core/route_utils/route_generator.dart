@@ -36,6 +36,7 @@ import 'package:kcal/view/product_recipes/recipes_mutton_kebab.dart';
 import 'package:kcal/view/product_recipes/recipes_spicy_veg.dart';
 import 'package:kcal/view/profile/units/edit_veiw.dart';
 import 'package:kcal/view/service_terms/view.dart';
+import 'package:kcal/view/splash/view.dart';
 import 'package:kcal/view/subscriptions/view.dart';
 
 import '../../auth/email_sent/view.dart';
@@ -101,6 +102,7 @@ class AppRoutes {
     RouteNames.chatWithUs: (context) => const ChatWithUsView(),
     RouteNames.message: (context) => const MessageView(),
     RouteNames.premium: (context) => const PremiumView(),
+    RouteNames.splash: (context) => const SplashView(),
   };
   static Route<dynamic> generateRoute(RouteSettings settings) {
     return RouteGenerator.generateRoute(settings);
@@ -282,6 +284,9 @@ class RouteGenerator {
       case RouteNames.premium:
         return MaterialPageRoute(
             settings: settings, builder: (_) => const PremiumView());
+      case RouteNames.splash:
+        return MaterialPageRoute(
+            settings: settings, builder: (_) => const SplashView());
       default:
         return MaterialPageRoute(
             settings: settings, builder: (_) => const WalkthroughView());

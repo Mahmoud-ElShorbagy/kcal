@@ -49,4 +49,5 @@ class RouteNames {
   static const String chatWithUs = "/chatWithUs";
   static const String message = "/message";
   static const String premium = "/premium";
+  static const String splash = "/splash";
 }
