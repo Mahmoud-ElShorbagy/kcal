@@ -22,6 +22,7 @@ class CutsomProductList extends StatelessWidget {
       children: [
         SizedBox(height: 16.h),
         Material(
+          color: Colors.transparent,
           child: InkWell(
             highlightColor: AppColors.textPrimary500.withValues(alpha: 0.2),
             borderRadius: BorderRadius.circular(16).r,

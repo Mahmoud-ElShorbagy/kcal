@@ -27,6 +27,7 @@ class CustomRecipesPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+      color: Colors.transparent,
       child: InkWell(
         onTap: onTap,
         highlightColor: AppColors.textPrimary500.withValues(alpha: 0.2),

@@ -21,6 +21,9 @@ class AppTapBarView extends StatelessWidget {
               Row(
                 children: [
                   InkWell(
+                    highlightColor:
+                        AppColors.textPrimary500.withValues(alpha: 0.2),
+                    borderRadius: BorderRadius.circular(7).r,
                     onTap: () {
                       cubit.updateText(0);
                     },
@@ -37,6 +40,9 @@ class AppTapBarView extends StatelessWidget {
                     width: 16.w,
                   ),
                   InkWell(
+                    highlightColor:
+                        AppColors.textPrimary500.withValues(alpha: 0.2),
+                    borderRadius: BorderRadius.circular(7).r,
                     onTap: () {
                       cubit.updateText(1);
                     },
@@ -53,6 +59,9 @@ class AppTapBarView extends StatelessWidget {
                     width: 16.w,
                   ),
                   InkWell(
+                    highlightColor:
+                        AppColors.textPrimary500.withValues(alpha: 0.2),
+                    borderRadius: BorderRadius.circular(7).r,
                     onTap: () {
                       cubit.updateText(2);
                     },

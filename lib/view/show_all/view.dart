@@ -26,6 +26,7 @@ class ShowAllView extends StatelessWidget {
         ),
         const Spacer(),
         InkWell(
+          borderRadius: BorderRadius.circular(7).r,
           onTap: onTap,
           child: CustomText(
             letterSpacing: 0.8.sp,
