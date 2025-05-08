@@ -28,6 +28,8 @@ class CustomRecipesPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
+      highlightColor: AppColors.textPrimary500.withValues(alpha: 0.2),
+      borderRadius: BorderRadius.circular(24).r,
       child: Column(
         children: [
           Stack(
@@ -48,7 +50,7 @@ class CustomRecipesPageView extends StatelessWidget {
               ),
             ],
           ),
-          Container(
+          Ink(
             padding: const EdgeInsets.symmetric(horizontal: 24),
             width: 327.w,
             height: 120.h,
