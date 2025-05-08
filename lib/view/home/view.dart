@@ -23,11 +23,11 @@ class HomeView extends StatelessWidget {
       child: Column(
         children: [
           const TitleView(),
-          const CategoreyPageView(),
-          SizedBox(height: 42.h),
           Expanded(
             child: ListView(
               children: [
+                const CategoreyPageView(),
+                SizedBox(height: 42.h),
                 const TrendingRecipesView(),
                 SizedBox(
                   height: 25.h,
